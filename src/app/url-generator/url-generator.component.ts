@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import {FormControl, Validators} from '@angular/forms';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -50,7 +51,6 @@ export class UrlGeneratorComponent implements OnInit {
 
   getShortened(user_data:any) {
     
-    let domain = "http://localhost:3000/";
     let body = {
       name: user_data.name,
       email: user_data.email,
@@ -58,9 +58,9 @@ export class UrlGeneratorComponent implements OnInit {
     }
     if(user_data.name != null && user_data.email != null && user_data.url != null){
       
-      return this.http.post( domain +  "/get_url_id",body).subscribe( (res)=> {
+      return this.http.post( `${environment.domain }get_url_id`,body).subscribe( (res)=> {
         if(res['success'] == true){
-          this.url_id = domain + res['response'];
+          this.url_id = environment.domain + res['response'];
           this.openSnackBar("URL Generated...!", "Success!");
         }
         else{

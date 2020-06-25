@@ -1,4 +1,4 @@
-<div class="example-container mat-elevation-z8" *ngIf="user_data">
+<div class="example-container mat-elevation-z8" *ngIf="user_data; else elseBlock" >
     <table mat-table [dataSource]="user_data">
 
         <ng-container matColumnDef="name">
@@ -26,11 +26,11 @@
         </ng-container>
         
         <ng-container matColumnDef="url_id">
-            <th mat-header-cell class="url_id" *matHeaderCellDef> <strong>RC.ly</strong>  </th>
+            <th mat-header-cell class="url_id" *matHeaderCellDef> <strong>rc-ly</strong>  </th>
             <td mat-cell *matCellDef="let user"
                           #tooltip="matTooltip"
                     matTooltip="{{domain + user.url_id}}"
-            > <a href="{{domain + user.url_id}}" target="_blank" rel="noopener">{{domain + user.url_id}}</a></td>
+            > <a href="{{user.url_id}}" target="_blank" rel="noopener">{{user.url_id}}</a></td>
         </ng-container>
         
 
@@ -38,3 +38,7 @@
           <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
     </table>
 </div>
+
+<ng-template #elseBlock>
+    <h3> No Data Found.... </h3>
+</ng-template>

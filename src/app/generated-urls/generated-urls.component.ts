@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import {TooltipPosition} from '@angular/material/tooltip';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -19,13 +20,13 @@ export class GeneratedURLSComponent implements OnInit {
   ) { }
 
   user_data:any = [{
-    name: '',
-    email: '',
-    url: '',
-    url_id: ''
+    name: null,
+    email: null,
+    url: null,
+    url_id: null
   }];
 
-  domain:string = "http://localhost:3000/";
+  domain:string = "https://rc-ly.herokuapp.com/";
 
 
   columnsToDisplay = ['name','email','url','url_id'];
@@ -36,9 +37,12 @@ export class GeneratedURLSComponent implements OnInit {
 
   getData() {
 
-    return this.http.get( this.domain +  "/get_all_url_ids").subscribe( (res)=> {
+    return this.http.get( `${environment.domain}get_all/url_ids`).subscribe( (res)=> {
       if(res['success'] == true){
-
+        
+        res['response'].forEach(element => {
+          element.url_id = environment.domain + element.url_id;
+        });
         this.user_data = res['response'];
         this.openSnackBar("Data Fetched...!", "Enjoy");
   
@@ -50,7 +54,6 @@ export class GeneratedURLSComponent implements OnInit {
       console.log("Error");
       this.openSnackBar("Server Error...!", "Sorry!");
     });
-
   }
 
   openSnackBar(message: string, action: string) {
