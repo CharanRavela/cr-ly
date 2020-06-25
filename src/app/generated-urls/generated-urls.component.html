@@ -1,0 +1,40 @@
+<div class="example-container mat-elevation-z8" *ngIf="user_data">
+    <table mat-table [dataSource]="user_data">
+
+        <ng-container matColumnDef="name">
+            <th mat-header-cell class="name" *matHeaderCellDef> <strong>Name</strong>  </th>
+            <td mat-cell *matCellDef="let user"
+                          #tooltip="matTooltip"
+                    matTooltip="{{user.name}}"
+            > {{user.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <th mat-header-cell class="email" *matHeaderCellDef> <strong>Email</strong> </th>
+            <td mat-cell *matCellDef="let user" 
+                          #tooltip="matTooltip"
+                        matTooltip="{{user.email}}"
+            > {{user.email}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="url">
+            <th mat-header-cell *matHeaderCellDef> <strong>URL</strong> </th>
+            <td mat-cell *matCellDef="let user"
+                          #tooltip="matTooltip"
+                    matTooltip="{{user.url}}"
+            > {{user.url}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="url_id">
+            <th mat-header-cell class="url_id" *matHeaderCellDef> <strong>RC.ly</strong>  </th>
+            <td mat-cell *matCellDef="let user"
+                          #tooltip="matTooltip"
+                    matTooltip="{{domain + user.url_id}}"
+            > <a href="{{domain + user.url_id}}" target="_blank" rel="noopener">{{domain + user.url_id}}</a></td>
+        </ng-container>
+        
+
+          <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+          <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+    </table>
+</div>

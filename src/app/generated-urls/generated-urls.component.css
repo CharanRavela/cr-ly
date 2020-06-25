@@ -1,0 +1,46 @@
+.example-container {
+    height: 400px;
+    overflow: auto;
+}
+  
+table {
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.name {
+
+    width: 15%;
+
+}
+
+.email{
+
+    width: 20%;
+
+}
+
+.url{
+    
+    width: 35%;
+
+}
+
+.url_id{
+
+    width: 30%;
+
+}
+
+::ng-deep th.mat-header-cell,td.mat-cell{
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 5px;
+}
+
+::ng-deep th.mat-header-cell{
+
+    color: #3f51b5;
+
+}

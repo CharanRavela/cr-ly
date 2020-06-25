@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Shortner</title>
+</head>
+<body>
+  <div>
+    <form class="form">
+
+      <mat-form-field class="full-width">
+        <mat-label>Full Name</mat-label>
+        <input matInput [formControl]="nameFormControl" [(ngModel)]="user_data.name">
+        <mat-error *ngIf="nameFormControl.hasError('required')">
+          Full Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput [formControl]="emailFormControl" [(ngModel)]="user_data.email" placeholder="Ex. abc@example.com">
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>URL</mat-label>
+        <input matInput [formControl]="urlFormControl" [(ngModel)]="user_data.url" placeholder="Ex. https://www.rc.ly">
+        <mat-error *ngIf="urlFormControl.hasError('pattern') && !urlFormControl.hasError('required')">
+          Please enter a valid url address
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          URL is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click) ="getShortened(user_data)">Get Your Link</button>
+      
+    </form>
+  </div>
+  <div class="div" *ngIf = "url_id">
+    <mat-card>
+      {{ url_id }}
+      <button mat-stroked-button class="copy" color="accent" [cdkCopyToClipboard] = "url_id">Copy</button>
+    </mat-card>
+  </div>
+</body>
+</html>
