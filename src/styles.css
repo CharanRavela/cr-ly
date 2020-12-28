@@ -50,3 +50,17 @@ html, body {
 }
 html, body { height: 100%; }
 body { font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@media only screen and (max-width: 450px){
+    
+    .icon{
+        width: 32px;
+        margin-top: 8px;
+    }
+
+    h1{
+        font-size: 32px;
+        margin-bottom: 8px;
+        
+    }
+}
